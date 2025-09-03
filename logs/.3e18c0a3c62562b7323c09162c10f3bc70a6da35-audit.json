@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/home/dataman/Desktop/R_Projects/watoto-lms-frontend/logs/.3e18c0a3c62562b7323c09162c10f3bc70a6da35-audit.json",
+    "files": [
+        {
+            "date": 1756942020196,
+            "name": "/home/dataman/Desktop/R_Projects/watoto-lms-frontend/logs/mcp-puppeteer-2025-09-04.log",
+            "hash": "8a6483992b008f39a82ed2d2fd50d0ff3a00c0ce5691ca6a807001590cef2a7b"
+        }
+    ],
+    "hashType": "sha256"
+}
