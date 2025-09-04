@@ -46,6 +46,7 @@ import AssessmentsPage from './components/AssessmentsPage';
 import SettingsPage from './components/SettingsPage';
 import CourseDetailPage from './components/CourseDetailPage';
 import AssessmentPage from './components/AssessmentPage';
+import LoginPage from './components/LoginPage';
 
 const theme = createTheme({
   palette: {
@@ -128,6 +129,27 @@ const theme = createTheme({
 
 const drawerWidth = 240;
 
+// Authentication check
+const isAuthenticated = () => {
+  const user = localStorage.getItem('user');
+  if (!user) return false;
+  const userData = JSON.parse(user);
+  return userData.loggedIn;
+};
+
+// Protected Route component
+const ProtectedRoute = ({ children }) => {
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (!isAuthenticated()) {
+      navigate('/login');
+    }
+  }, [navigate]);
+
+  return isAuthenticated() ? children : null;
+};
+
 function AppContent() {
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -147,6 +169,11 @@ function AppContent() {
   const handleMenuClick = (path) => {
     navigate(path);
     setMobileOpen(false); // Close mobile drawer after navigation
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    navigate('/login');
   };
 
   const drawer = (
@@ -252,7 +279,11 @@ function AppContent() {
               Learning Management System
             </Typography>
 
-            <Avatar sx={{ ml: 2, bgcolor: '#1976d2' }}>
+            <Avatar
+              sx={{ ml: 2, bgcolor: '#1976d2', cursor: 'pointer' }}
+              onClick={handleLogout}
+              title="Logout"
+            >
               <AccountCircle />
             </Avatar>
           </Toolbar>
@@ -300,13 +331,42 @@ function AppContent() {
         >
           <Toolbar />
           <Routes>
-            <Route path="/" element={<DashboardPage />} />
-            <Route path="/courses" element={<CoursesPage />} />
-            <Route path="/course/:courseId" element={<CourseDetailPage />} />
-            <Route path="/students" element={<StudentsPage />} />
-            <Route path="/assessments" element={<AssessmentsPage />} />
-            <Route path="/assessment/:courseId" element={<AssessmentPage />} />
-            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/" element={
+              <ProtectedRoute>
+                <DashboardPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/courses" element={
+              <ProtectedRoute>
+                <CoursesPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/course/:courseId" element={
+              <ProtectedRoute>
+                <CourseDetailPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/students" element={
+              <ProtectedRoute>
+                <StudentsPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/assessments" element={
+              <ProtectedRoute>
+                <AssessmentsPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/assessment/:courseId" element={
+              <ProtectedRoute>
+                <AssessmentPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/settings" element={
+              <ProtectedRoute>
+                <SettingsPage />
+              </ProtectedRoute>
+            } />
           </Routes>
         </Box>
       </Box>
@@ -317,7 +377,14 @@ function AppContent() {
 function App() {
   return (
     <Router>
-      <AppContent />
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/*" element={
+          <ProtectedRoute>
+            <AppContent />
+          </ProtectedRoute>
+        } />
+      </Routes>
     </Router>
   );
 }
