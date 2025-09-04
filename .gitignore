@@ -21,3 +21,41 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# LMS Project Specific Exclusions
+# Large documentation and resource directories
+awesome-web-security/
+cypress-testing/
+excalidraw/
+open-alternatives/
+system-design/
+system-design-primer/
+selfhosted-tools/
+math-library/
+doc/
+logs/
+scripts/
+config/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.cache
+
+# OS generated files
+Thumbs.db
+.DS_Store
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Package manager files
+yarn.lock
+pnpm-lock.yaml

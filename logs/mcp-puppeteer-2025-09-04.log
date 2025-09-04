@@ -1,4 +1,0 @@
-{"level":"info","message":"Starting MCP server","service":"mcp-puppeteer","timestamp":"2025-09-04 02:27:00.347"}
-{"level":"info","message":"MCP server started successfully","service":"mcp-puppeteer","timestamp":"2025-09-04 02:27:00.352"}
-{"arguments":{"url":"https://github.com/DataMan7/awesome-web-security"},"level":"debug","message":"Tool call received","service":"mcp-puppeteer","timestamp":"2025-09-04 02:33:45.700","tool":"puppeteer_navigate"}
-{"0":"n","1":"p","2":"x","level":"info","message":"Launching browser with config:","service":"mcp-puppeteer","timestamp":"2025-09-04 02:33:45.710"}
