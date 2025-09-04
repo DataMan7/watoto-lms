@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Container,
   Typography,
@@ -21,6 +22,8 @@ import {
 } from '@mui/icons-material';
 
 const CoursesPage = () => {
+  const navigate = useNavigate();
+
   const courses = [
     {
       id: 1,
@@ -261,8 +264,12 @@ const CoursesPage = () => {
                 <Button size="small" color="primary" startIcon={<Edit />}>
                   Edit
                 </Button>
-                <Button size="small" color="secondary">
-                  View Details
+                <Button
+                  size="small"
+                  color="secondary"
+                  onClick={() => navigate(`/course/${course.id}`)}
+                >
+                  View Course
                 </Button>
                 <Button size="small" color="error" startIcon={<Delete />}>
                   Delete

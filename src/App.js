@@ -44,6 +44,8 @@ import CoursesPage from './components/CoursesPage';
 import StudentsPage from './components/StudentsPage';
 import AssessmentsPage from './components/AssessmentsPage';
 import SettingsPage from './components/SettingsPage';
+import CourseDetailPage from './components/CourseDetailPage';
+import AssessmentPage from './components/AssessmentPage';
 
 const theme = createTheme({
   palette: {
@@ -300,8 +302,10 @@ function AppContent() {
           <Routes>
             <Route path="/" element={<DashboardPage />} />
             <Route path="/courses" element={<CoursesPage />} />
+            <Route path="/course/:courseId" element={<CourseDetailPage />} />
             <Route path="/students" element={<StudentsPage />} />
             <Route path="/assessments" element={<AssessmentsPage />} />
+            <Route path="/assessment/:courseId" element={<AssessmentPage />} />
             <Route path="/settings" element={<SettingsPage />} />
           </Routes>
         </Box>
